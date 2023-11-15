@@ -29,15 +29,19 @@ router.post('/', (req, res) => {
 
 // delete a workout
 router.delete('/:id', (req, res) => {
+    const workoutId = req.params.id;
     res.json({
-        message: 'Delete a workout!!'
+        workoutId: workoutId,
+        message: `Delete a workout with id ${workoutId}`
     });
 })
 
 // update a workout
 router.patch('/:id', (req, res) => {
+   const workoutId = req.params.id;
     res.json({
-        message: 'Update a workout!!'
+        workoutId: workoutId,
+        message: `Update a workout with id ${workoutId}`
     });
 })
 
