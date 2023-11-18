@@ -41,6 +41,7 @@ const WorkoutForm = () => {
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
+        required
       />
 
       <label>Load (in kg):</label>
@@ -48,6 +49,7 @@ const WorkoutForm = () => {
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
+        required
       />
 
       <label>Number of Reps:</label>
@@ -55,6 +57,7 @@ const WorkoutForm = () => {
         type="number"
         onChange={(e) => setReps(e.target.value)}
         value={reps}
+        required
       />
 
       <button>Add Workout</button>

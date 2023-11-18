@@ -1,7 +1,6 @@
-// Date: 2021-09-05
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Pages & Components
+// pages & components
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 
