@@ -23,6 +23,12 @@ const WorkoutForm = () => {
 
     if (!response.ok) {
       setError(json.error);
+    } else if (response.ok) {
+      setTitle("");
+      setLoad("");
+      setReps("");
+      setError(null);
+      console.log("new workout added", json);
     }
   };
 
@@ -52,3 +58,5 @@ const WorkoutForm = () => {
     </form>
   );
 };
+
+module.exports = WorkoutForm;
