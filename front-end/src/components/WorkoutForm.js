@@ -18,17 +18,17 @@ const WorkoutForm = () => {
         "Content-Type": "application/json",
       },
     });
-
     const json = await response.json();
 
     if (!response.ok) {
       setError(json.error);
-    } else if (response.ok) {
+    }
+    if (response.ok) {
+      setError(null);
       setTitle("");
       setLoad("");
       setReps("");
-      setError(null);
-      console.log("new workout added", json);
+      console.log("new workout added:", json);
     }
   };
 
@@ -36,27 +36,31 @@ const WorkoutForm = () => {
     <form className="create" onSubmit={handleSubmit}>
       <h3>Add a New Workout</h3>
 
-      <label htmlFor="">Exercise Title:</label>
+      <label>Excersize Title:</label>
       <input
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
-      <label htmlFor="">Reps</label>
-      <input
-        type="number"
-        onChange={(e) => setReps(e.target.value)}
-        value={reps}
-      />
-      <label htmlFor="">Load (In kg):</label>
+
+      <label>Load (in kg):</label>
       <input
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
       />
-      <button>Submit</button>
+
+      <label>Number of Reps:</label>
+      <input
+        type="number"
+        onChange={(e) => setReps(e.target.value)}
+        value={reps}
+      />
+
+      <button>Add Workout</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 };
 
-module.exports = WorkoutForm;
+export default WorkoutForm;
