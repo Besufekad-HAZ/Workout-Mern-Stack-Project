@@ -35,8 +35,8 @@ header a {
 /* homepage */
 .home {
   display: grid;
-  grid-template-columns: 4fr 2.5fr;
-  gap: 3%;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
 }
 .workout-details {
   background: #fff;
@@ -97,4 +97,7 @@ div.error {
   color: var(--error);
   border-radius: 4px;
   margin: 20px 0;
+}
+input.error {
+  border: 1px solid var(--error);
 }
