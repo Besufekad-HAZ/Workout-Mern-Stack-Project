@@ -21,6 +21,19 @@ const Home = () => {
     fetchWorkouts();
   }, [dispatch]);
 
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      const response = await fetch("/api/workouts");
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_WORKOUTS", payload: json });
+      }
+    };
+
+    fetchWorkouts();
+  }, [dispatch, workouts]); // re-fetch workouts whenever the workouts state changes
+
   return (
     <div className="home">
       <div className="workouts">
