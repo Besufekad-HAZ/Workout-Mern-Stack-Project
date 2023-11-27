@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/workouts", workoutRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 // connect to database
 mongoose
