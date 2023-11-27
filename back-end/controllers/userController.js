@@ -1,4 +1,10 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+
+// Create JWT
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
 
 // Login Controller
 const loginUser = async (req, res) => {
