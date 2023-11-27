@@ -4,7 +4,11 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
+  };
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
@@ -28,3 +32,5 @@ const Signup = () => {
     </form>
   );
 };
+
+export default Signup;
