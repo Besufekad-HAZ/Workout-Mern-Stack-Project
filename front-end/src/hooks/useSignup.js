@@ -10,7 +10,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:3001/auth/signup", {
+      const response = await fetch("/api/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
