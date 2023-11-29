@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useWorkoutsContext } from "./useWorkoutsContext";
 
 export const useLogout = () => {
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
+  const { dispatch: workoutsDispatch } = useWorkoutsContext();
 
   const logout = async () => {
     // remove user from storage
     localStorage.removeItem("user");
+    // remove workouts from storage
     dispatch({ type: "LOGOUT" });
-    setIsLoading(false);
+    workoutsDispatch({ type: "SET_WORKOUTS", payload: null });
   };
-  return { logout, error, isLoading };
+  return { logout };
 };
