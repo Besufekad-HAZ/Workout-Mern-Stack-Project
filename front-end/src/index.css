@@ -17,7 +17,7 @@ header {
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 15px 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,7 +105,8 @@ input.error {
 /* navbar */
 nav {
   display: flex;
-  align-items: center;
+  gap: 2%;
+  width: 25%;
 }
 nav a {
   margin-left: 10px;
@@ -120,6 +121,7 @@ nav button {
   font-family: "Poppins";
   cursor: pointer;
   font-size: 1em;
+  margin-left: 10px;
 }
 
 /* auth forms */
