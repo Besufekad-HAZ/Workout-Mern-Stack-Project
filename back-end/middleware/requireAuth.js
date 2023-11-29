@@ -19,3 +19,5 @@ const requireAuth = async (req, res, next) => {
     res.status(401).json({ error: "Request is not authorized" });
   }
 };
+
+module.exports = requireAuth;
