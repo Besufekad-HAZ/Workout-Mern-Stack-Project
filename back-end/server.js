@@ -4,29 +4,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const workoutRoutes = require("./routes/workouts");
 const userRoutes = require("./routes/users");
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 
 // express app
 const app = express();
 
+// enable cors
+app.use(cors(corsOptions));
+
 // middleware
 app.use(express.json());
-
-// Add CORS headers
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  if (req.method === "OPTIONS") {
-    // preflight request. reply successfully:
-    res.status(200).send();
-    return;
-  }
-  next();
-});
-
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
@@ -35,3 +23,17 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/users", userRoutes);
+
+// connect to database
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+      console.log("connected to the database");
+      console.log(`Server is listening on port ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
