@@ -18,6 +18,12 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  if (req.method === "OPTIONS") {
+    // preflight request. reply successfully:
+    res.status(200).send();
+    return;
+  }
   next();
 });
 
@@ -29,17 +35,3 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/users", userRoutes);
-
-// connect to database
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    // listen for requests
-    app.listen(process.env.PORT, () => {
-      console.log("connected to the database");
-      console.log(`Server is listening on port ${process.env.PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
