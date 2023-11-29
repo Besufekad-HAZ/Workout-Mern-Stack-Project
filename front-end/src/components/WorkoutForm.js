@@ -37,10 +37,10 @@ const WorkoutForm = () => {
       setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
-      setError(null);
       setTitle("");
       setLoad("");
       setReps("");
+      setError(null);
       setEmptyFields([]);
       dispatch({ type: "CREATE_WORKOUT", payload: json });
     }

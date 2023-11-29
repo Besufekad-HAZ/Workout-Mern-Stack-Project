@@ -1,18 +1,18 @@
+import { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
-
-//date fns
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useAuthContext } from "../hooks/useAuthContext";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
   const { user } = useAuthContext();
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleClick = async () => {
     if (!user) {
-      console.log("You must be logged in");
       return;
     }
+
     const response = await fetch("/api/workouts/" + workout._id, {
       method: "DELETE",
       headers: {
@@ -23,8 +23,13 @@ const WorkoutDetails = ({ workout }) => {
 
     if (response.ok) {
       dispatch({ type: "DELETE_WORKOUT", payload: json });
+      setIsDeleted(true);
     }
   };
+
+  if (isDeleted) {
+    return null; // Render nothing if the workout is deleted
+  }
 
   return (
     <div className="workout-details">
